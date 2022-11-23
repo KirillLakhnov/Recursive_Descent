@@ -3,7 +3,7 @@
 int main ()
 {
     char string[250] = "";
-    scanf ("%s", string);
+    fgets (string, 250, stdin);
 
     printf ("\n%lf\n", GetG (string));
     

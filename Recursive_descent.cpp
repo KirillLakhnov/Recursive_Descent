@@ -5,16 +5,20 @@ const char* str_all;
 double GetG (const char* str)
 {
     str_all = str;
+    pass_space ();
+
     double val = GetE ();
+
+    pass_space ();
 
     assert (*str_all == '\0');
 
-    printf ("GET_G = %lf\n", val);
     return val;
 }
 
 double GetE ()
 {
+    pass_space ();
     double val = GetT ();
 
     while (*str_all == '+' || *str_all == '-')
@@ -34,13 +38,13 @@ double GetE ()
         }
     }
 
-    printf ("GET_E = %lf\n", val);
-
+    pass_space ();
     return val;
 }
 
 double GetT ()
 {
+    pass_space ();
     double val = GetPow ();
 
     while (*str_all == '*' || *str_all == '/')
@@ -60,13 +64,13 @@ double GetT ()
         }
     }
 
-    printf ("GET_T = %lf\n", val);
-
+    pass_space ();
     return val;
 }
 
 double GetPow ()
 {
+    pass_space ();
     double val = GetP ();
 
     while (*str_all == '^')
@@ -82,13 +86,14 @@ double GetPow ()
         }
     }
 
-    printf ("GET_Pow = %lf\n", val);
-
+    pass_space ();
     return val;
 }
 
 int GetUnarySign ()
 {
+    pass_space ();
+
     if (*str_all == '-')
     {
         str_all++;
@@ -100,11 +105,13 @@ int GetUnarySign ()
         return UNARY_PLUS;
     }
 
+    pass_space ();
     return NO_UNARY_SIGN;
 }
 
 double GetP ()
 {
+    pass_space ();
     double val = 0;
 
     int unary_sign = GetUnarySign ();
@@ -133,12 +140,13 @@ double GetP ()
 
     //val = GetFact (val);
 
-    printf ("GET_P = %lf\n", val);
+    pass_space ();
     return val;
 }
 
 double GetFunc ()
 {
+    pass_space ();
     double val = 0;
 
     int math_func = is_math_func ();
@@ -198,18 +206,16 @@ double GetFunc ()
         val = GetConst ();
     }
 
-    printf ("GET_FUNC = %lf\n", val);
-
+    pass_space ();
     return val;
 }
 
 double GetConst ()
 {
+    pass_space ();
     double val = 0;
 
     int math_const = is_math_const ();
-
-    printf ("MATH_CONST = %d\n", math_const);
 
     if (math_const != 0)
     {
@@ -229,13 +235,13 @@ double GetConst ()
 
    // val = GetFact (val);
 
-    printf ("GET_CONST = %lf\n", val);
-
+    pass_space ();
     return val;
 }
 
 double GetN ()
 {
+    pass_space ();
     double val = 0;
 
     const char* s_old = str_all;
@@ -247,8 +253,7 @@ double GetN ()
 
     assert (str_all != s_old);
 
-    printf ("GET_N %lf\n", val);
-
+    pass_space ();
     return val;
 }
 
@@ -376,3 +381,12 @@ int factorial (int value)
 
     return factorial_value;
 }
+
+void pass_space ()
+{
+    while (isspace (*str_all) != 0)
+    {
+        str_all++;
+    }
+}
+

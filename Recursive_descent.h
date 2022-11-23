@@ -61,4 +61,6 @@ int is_math_const ();
 
 int factorial (int value);
 
+void pass_space ();
+
 #endif //RECURSIVE_DESCENT_H
